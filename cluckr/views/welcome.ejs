@@ -1,0 +1,22 @@
+
+<%- include('./partials/header') %>
+    
+<div class="card m-2"> 
+<div class="form-group m-2">
+
+    <form action="/sign_in" method="POST"  class="form-group">
+   <label for="">Username</label>
+    <input 
+    type="text" 
+    name="username" 
+    class="form-control mr-2"
+    placeholder="e.g. Sean Hennesy"
+    >
+    <button class="btn btn-primary mt-2" type="submit">Sign In</button>  
+    </form>
+</div>
+
+    <%- include('./partials/footer') %>
+  
+
+               

@@ -22,9 +22,38 @@ app.get('/hello-world', function (req, res) {
     res.send('Hello, World!');
   });
 
-//   app.get('/clucks', function (req, res) {
-//     res.render('index');
-//   });
+app.get('/welcome', function (req, res) {
+    res.render("welcome");
+  });
+
+app.use((request, response, next) => {
+    // Read cookies from the request with `request.cookies`
+    // Cookies are represented as an object where each key is
+    // the name of the cookie and its value the content of the cookie.
+    // To use `request.cookies` or `response.cookie()` you must
+    // first install "cookie-parser" middleware.
+
+  
+    const username = request.cookies.username;
+    // Properties set on `response.locals` become variables in
+    // all rendered templates. This means the `username` can be used
+    // as a variable inside the "welcome.ejs" or any other template.
+    response.locals.username = "";
+  
+    if (username) {
+      response.locals.username = username;
+      console.log(`ð Signed in as ${username}`);
+    }
+  
+    next();
+  });
+
+
+
+
+
+
+
 
 
 
