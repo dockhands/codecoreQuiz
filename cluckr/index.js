@@ -91,6 +91,11 @@ app.get('/login', function (req, res) {
     response.redirect("/");
   });
 
+  app.post("/sign_out", (request, response /*, next */) => {
+    response.clearCookie("username");
+    response.redirect("/");
+  });
+
 
 const DOMAIN = 'localhost';
 const PORT = '4646';
