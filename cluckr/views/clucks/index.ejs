@@ -3,4 +3,22 @@
 <h2>Clucks Homepage</h2>
 
 
+<div class="post-cards">
+  <% for (let cluck of clucks) { %> 
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">
+       
+        <img src= "<%= cluck.image_url %>" alt="..." class="img-rounded" height="50"  >
+          <%= cluck.username%> <br>
+          <%= cluck.content %>
+        
+        </h5>
+        
+      </div>
+    </div>
+  <% } %>
+</div>
+
+
 <%- include("../partials/footer") %>

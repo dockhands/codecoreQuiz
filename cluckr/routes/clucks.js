@@ -21,18 +21,13 @@ router.use((request, response, next) => {
 router.use(cookieParser());
 
 
-// clucks URL: /clucks/ METHOD: GET
-
-router.get("/clucks", (req, res) => {
-    res.render("clucks/index");
-  });
-
-
   router.get("/clucks/new", (req, res) => {
     // load ejs file cohorts/new.ejs
 
     name = req.cookies.username;    
     console.log("this is request.query.name", req.cookies.username);
+
+    profile_pic = req.cookies.profile_pic;    
     res.render("clucks/new");
   });
 
@@ -41,8 +36,8 @@ router.get("/clucks", (req, res) => {
     knex("clucks")
       .insert({
        
-       // username: req.body.usernamee,
-        imagel_url: req.body.image_url,
+        username: req.cookies.username,
+        image_url: req.body.image_url,
         content: req.body.content,
         createdAt: req.body.createdAt,
         updatedAt: req.body.updatedAt
@@ -56,5 +51,14 @@ router.get("/clucks", (req, res) => {
       });
   });
 
+
+    // posts#index URL: /posts METHOD: GET
+router.get("/clucks", (req, res) => {
+    knex("clucks")
+      .orderBy("createdAt", "desc")
+      .then(clucks=> {
+        res.render("clucks/index", { clucks:clucks });
+      });
+  });
 
 module.exports = router;
