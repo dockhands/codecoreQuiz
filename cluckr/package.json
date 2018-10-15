@@ -1,0 +1,28 @@
+{
+  "name": "cluckr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "db:create": "createdb --echo cohorts",
+    "db:drop": "dropdb --echo cohorts",
+    "db:migrate": "knex migrate:latest",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:migrate"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "knex": "^0.15.2",
+    "morgan": "^1.9.1",
+    "pg": "^7.5.0"
+  }
+}
