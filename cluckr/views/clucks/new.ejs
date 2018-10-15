@@ -1,0 +1,31 @@
+<%- include("../partials/header") %>
+
+<h3>Create your Cluck📝</h3>
+
+<h2> <%=  username %> </h2>
+
+
+<form action="/newCluck" method="POST">
+<div class="form-group">
+  Content <textarea
+      class="form-control"
+      name="content"
+      cols="60"
+      rows="5"
+      placeholder="Whatchoo cluckin' 'bout?"> </textarea>
+  </div>
+
+  <div class="form-group">
+  Image Url <input
+      type="text"
+      class="form-control"
+      name="logoUrl"
+      placeholder="https://ubisafe.org/images/barn-vector-rooster-4.png"> 
+  </div>
+
+
+
+  <input type="submit" value="Cluck!" class="btn btn-outline">
+</form>
+
+<%- include("../partials/footer") %>
