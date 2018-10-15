@@ -30,6 +30,11 @@ app.use((request, response, next) => {
     // the name of the cookie and its value the content of the cookie.
     // To use `request.cookies` or `response.cookie()` you must
     // first install "cookie-parser" middleware.
+    profile_pic = request.cookies.profile_pic;  
+    console.log("this is request.query.name", request.cookies.profile_pic);  
+
+    
+
     const username = request.cookies.username;
     // Properties set on `response.locals` become variables in
     // all rendered templates. This means the `username` can be used
@@ -40,6 +45,11 @@ app.use((request, response, next) => {
       response.locals.username = username;
       console.log(`ð Signed in as ${username}`);
     }
+
+    if (profile_pic) {
+        response.locals.profile_pic = profile_pic;
+        console.log(`ð Profile Pic is ${profile_pic}`);
+      }
   
     next();
   });
@@ -51,12 +61,16 @@ app.get('/hello-world', function (req, res) {
 
   app.get('/', function (req, res) {
  
-   const name = req.cookies.username;    
+   const name = req.cookies.username;  
+   const profile_pic= req.cookies.profile_pic;  
+     
    console.log("this is request.query.name", req.cookies.username);
+   console.log("this is request.query.name", req.cookies.profile_pic);
+
 
     // this will render a file called: welcome.ejs (because ejs is our default view engine)
     // within a folder called `views` (by convention)
-   res.render("home", { visitorName: name });
+   res.render("home", { visitorName: name, profilePic: profile_pic});
 
   });
 
@@ -74,6 +88,8 @@ app.get('/login', function (req, res) {
     //response.send('Hello, World!');
   
     const username = request.body.username;
+    const profile_pic= request.body.profile_pic;
+
   
     // `response.cookie(<cookie-name>, <cookie-value>, <options>)`
     // The above method is added to the `response` object by the
@@ -84,6 +100,7 @@ app.get('/login', function (req, res) {
     // - (optional) The last, options for the cookie.
   
     response.cookie("username", username, { maxAge: COOKIE_MAX_AGE });
+    response.cookie("profile_pic", profile_pic, { maxAge: COOKIE_MAX_AGE });
   
     // Like `response.send` and `response.render`, `response.redirect` ends
     // the response. It tells browser to make GET request to a specified
@@ -93,6 +110,7 @@ app.get('/login', function (req, res) {
 
   app.post("/sign_out", (request, response /*, next */) => {
     response.clearCookie("username");
+    response.clearCookie("profile_pic");
     response.redirect("/");
   });
 
