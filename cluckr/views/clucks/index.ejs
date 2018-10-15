@@ -7,17 +7,36 @@
   <% for (let cluck of clucks) { %> 
     <div class="card mb-4">
       <div class="card-body">
-        <h5 class="card-title">
+        <h5 class="card-title">     </h5>
        
+        <div class="row">
+        <div class="col col-sm-1">
+       
+    
+        <% if (cluck.profile_pic) { %>
         <img src= "<%= cluck.profile_pic%>" alt="..." class="img-rounded" height="50"  >
-          <%= cluck.username%> <br>
+        <% } %>
+        </div>
+        <div class="col col-lg-6">
+
+          <%= cluck.username%> <span>•</span>
+          <%= cluck.createdAt%> <br>
           <%= cluck.content %>
 
           <br>
-          <img src= "<%= cluck.image_url%>" alt="..." class="img-rounded" height="300"  >
+
+          <% if (cluck.image_url) { %>
+          <img
+            src= "<%= cluck.image_url%>"
+            alt="Card image"
+            class="card-img-top"
+            height="300" 
+          >
+        <% } %>
+        </div>
           
-        
-        </h5>
+        </div>
+   
         
       </div>
     </div>
